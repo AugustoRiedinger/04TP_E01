@@ -22,6 +22,9 @@ void P_LCD_2x16_Cmd(uint8_t wert, LCD_2X16_t* LCD_2X16);
 void P_LCD_2x16_Cursor(LCD_2X16_t* LCD_2X16, uint8_t x, uint8_t y);
 void P_LCD_2x16_Data(uint8_t wert, LCD_2X16_t* LCD_2X16);
 
+//TIM4:
+uint8_t FIND_PINSOURCE(uint32_t Pin);
+
 /*****************************************************************************
 INIT_DI:
 
@@ -407,6 +410,49 @@ void INIT_SYSTICK(float div)
 	RCC_GetClocksFreq(&Clocks_Values);
 }
 
+
+
+/*****************************************************************************
+INIT_TIM
+
+	* @author	A. Riedinger.
+	* @brief	Inicializa salidas como timers.
+	* @returns	void
+	* @param
+		- Port		Puerto del timer a inicializar. Ej: GPIOX.
+		- Pin		Pin del LED. Ej: GPIO_Pin_X
+
+	* @ej
+		- INIT_TIM4(GPIOX, GPIO_Pin_X); //Inicialización del Pin PXXX como TIMER4.
+******************************************************************************/
+void INIT_TIM4(GPIO_TypeDef* Port, uint16_t Pin)
+{
+	  GPIO_InitTypeDef GPIO_InitStructure;
+
+
+	  RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+	  //Habilitacion de la senal de reloj para el periferico:
+	  uint32_t Clock;
+	  Clock = FIND_CLOCK(Port);
+	  RCC_AHB1PeriphClockCmd(Clock, ENABLE);
+
+	  /* GPIOC Configuration: TIM4 CH1 (PD12),CH2 (PD13),CH3 (PD14)CH4 (PD15) */
+	  GPIO_InitStructure.GPIO_Pin = Pin;
+	  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+	  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP ;
+	  GPIO_Init(Port, &GPIO_InitStructure);
+
+	  //Definición de GPIO_PinSourceXX:
+	  uint8_t PinSource;
+	  PinSource = FIND_PINSOURCE(Pin);
+
+	  /* Connect TIM4 pins to AF2 */
+	  GPIO_PinAFConfig(Port, PinSource, GPIO_AF_TIM4);
+}
+
+
 /*------------------------------------------------------------------------------
 DECLARACION DE FUNCIONES INTERNAS:
 ------------------------------------------------------------------------------*/
@@ -615,5 +661,14 @@ void P_LCD_2x16_Data(uint8_t wert, LCD_2X16_t* LCD_2X16)
   if((wert&0x02)!=0) P_LCD_2x16_PinHi(TLCD_D5, LCD_2X16); else P_LCD_2x16_PinLo(TLCD_D5, LCD_2X16);
   if((wert&0x01)!=0) P_LCD_2x16_PinHi(TLCD_D4, LCD_2X16); else P_LCD_2x16_PinLo(TLCD_D4, LCD_2X16);
   P_LCD_2x16_Clk(LCD_2X16);
+}
+
+//Configuración del TIM4:
+uint8_t FIND_PINSOURCE(uint32_t Pin)
+{
+	if     (Pin == GPIO_Pin_12) return GPIO_PinSource12;
+	else if(Pin == GPIO_Pin_13) return GPIO_PinSource13;
+	else if(Pin == GPIO_Pin_14) return GPIO_PinSource14;
+	else if(Pin == GPIO_Pin_15) return GPIO_PinSource15;
 }
 

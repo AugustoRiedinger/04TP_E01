@@ -90,5 +90,7 @@ void	PRINT_LCD_2x16(LCD_2X16_t*, uint8_t, uint8_t, char*);
 
 void 	INIT_SYSTICK(float);
 
+void INIT_TIM4(GPIO_TypeDef*, uint16_t);
+
 
 #endif //mi_libreria_H
