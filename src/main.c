@@ -2,20 +2,18 @@
   * @file    main.c
   * @author  G. Garcia & A. Riedinger.
   * @version 0.1
-  * @date    27-07-21
-  * @brief   PP Despachador de Tareas (TS) - Indicador de Tiempo & Medidor de Temp.
-  *
+  * @date    29-08-21
+  * @brief   Generacion de una senal de 350 Hz cuyo ciclo de trabajo puede ser modificado
+  * 		 al pulsar el UserButton. La tension de la senal se incrementa en intervalos
+  * 		 de 0.5 V cada vez que se pulsa el UserButton hasta llegar a VDD.
+
   * SALIDAS:
   	  *	LCD
+  	  *	TIM1	PD12
   *
   * ENTRADAS:
-  	  * UserButton - PC13
-  	  * S1 		   - PC9
-  	  * S2         - PB8
-  	  * S3         - PC6
-  	  * S4         - PC8
-  	  * LM35 	   - PC0/ADC1
-**********/
+  	  * UserButton	PC13
+  **********/
 
 /*------------------------------------------------------------------------------
 LIBRERIAS:
