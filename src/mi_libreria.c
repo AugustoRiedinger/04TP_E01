@@ -22,6 +22,9 @@ void P_LCD_2x16_Cmd(uint8_t wert, LCD_2X16_t* LCD_2X16);
 void P_LCD_2x16_Cursor(LCD_2X16_t* LCD_2X16, uint8_t x, uint8_t y);
 void P_LCD_2x16_Data(uint8_t wert, LCD_2X16_t* LCD_2X16);
 
+//TIM4:
+uint8_t FIND_PINSOURCE(uint32_t Pin);
+
 /*****************************************************************************
 INIT_DI:
 
@@ -407,8 +410,129 @@ void INIT_SYSTICK(float div)
 	RCC_GetClocksFreq(&Clocks_Values);
 }
 
+
+
+/*****************************************************************************
+INIT_TIM4
+
+	* @author	A. Riedinger.
+	* @brief	Inicializa salidas como timers.
+	* @returns	void
+	* @param
+		- Port		Puerto del timer a inicializar. Ej: GPIOX.
+		- Pin		Pin del LED. Ej: GPIO_Pin_X
+
+	* @ej
+		- INIT_TIM4(GPIOX, GPIO_Pin_X); //Inicialización del Pin PXXX como TIMER4.
+******************************************************************************/
+void INIT_TIM4(GPIO_TypeDef* Port, uint16_t Pin)
+{
+	  GPIO_InitTypeDef GPIO_InitStructure;
+
+
+	  RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
+	  //Habilitacion de la senal de reloj para el periferico:
+	  uint32_t Clock;
+	  Clock = FIND_CLOCK(Port);
+	  RCC_AHB1PeriphClockCmd(Clock, ENABLE);
+
+	  /* GPIOC Configuration: TIM4 CH1 (PD12),CH2 (PD13),CH3 (PD14)CH4 (PD15) */
+	  GPIO_InitStructure.GPIO_Pin = Pin;
+	  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+	  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP ;
+	  GPIO_Init(Port, &GPIO_InitStructure);
+
+	  //Definición de GPIO_PinSourceXX:
+	  uint8_t PinSource;
+	  PinSource = FIND_PINSOURCE(Pin);
+
+	  /* Connect TIM4 pins to AF2 */
+	  GPIO_PinAFConfig(Port, PinSource, GPIO_AF_TIM4);
+}
+
+
+
+/*****************************************************************************
+SET_TIM4 [1]
+
+	* @author	A. Riedinger.
+	* @brief	Setea el TIM4 a una determinada frecuencia.
+	* @returns	void
+	* @param
+		- Port		Puerto del timer a inicializar. Ej: GPIOX.
+		- Pin		Pin del LED. Ej: GPIO_Pin_X
+
+	* @ej
+		- INIT_TIM4(GPIOX, GPIO_Pin_X); //Inicialización del Pin PXXX como TIMER4.
+******************************************************************************/
+void SET_TIM4(uint16_t Pin, uint32_t TimeBase, uint32_t Freq, uint32_t DutyCycle)
+{
+	uint32_t DT_Value;
+	uint16_t PrescalerValue = 0;
+
+	/* TIM Configuration */
+	TIM_Config();
+	SystemCoreClockUpdate();
+
+	/* Compute the prescaler value */
+	PrescalerValue = (uint16_t) ((SystemCoreClock / 2) / TimeBase) - 1;
+
+	/* Time base configuration */
+	TIM_TimeBaseStructure.TIM_Period = TimeBase / Freq - 1;
+
+	TIM_TimeBaseStructure.TIM_Prescaler = PrescalerValue;
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+
+	TIM_TimeBaseInit(TIM4, &TIM_TimeBaseStructure);
+
+	/* PWM1 Mode configuration: Channel1*/
+	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+	//Configuración del Duty Cycle para cada pin:
+	DT_Value = DutyCycle * (TIM_TimeBaseStructure.TIM_Period + 1) / 100;
+
+	if (Pin == GPIO_Pin_12)
+	{
+		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+		TIM_OCInitStructure.TIM_Pulse = DT_Value;
+		TIM_OC1Init(TIM4, &TIM_OCInitStructure);
+		TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	}
+	else if(Pin == GPIO_Pin_13)
+	{
+		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+		TIM_OCInitStructure.TIM_Pulse = DT_Value;
+		TIM_OC2Init(TIM4, &TIM_OCInitStructure);
+		TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	}
+	else if(Pin == GPIO_Pin_14)
+	{
+		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+		TIM_OCInitStructure.TIM_Pulse = DT_Value;
+		TIM_OC3Init(TIM4, &TIM_OCInitStructure);
+		TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	}
+	else if(Pin == GPIO_Pin_15)
+	{
+		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+		TIM_OCInitStructure.TIM_Pulse = DT_Value;
+		TIM_OC4Init(TIM4, &TIM_OCInitStructure);
+		TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	}
+
+	//Cargar los valores al TIM4:
+	TIM_ARRPreloadConfig(TIM4, ENABLE);
+    TIM_Cmd(TIM4, ENABLE);
+}
+
+
+
 /*------------------------------------------------------------------------------
-DECLARACION DE FUNCIONES INTERNAS:
+ FUNCIONES INTERNAS:
 ------------------------------------------------------------------------------*/
 //General:
 uint32_t FIND_CLOCK(GPIO_TypeDef* Port)
@@ -617,3 +741,47 @@ void P_LCD_2x16_Data(uint8_t wert, LCD_2X16_t* LCD_2X16)
   P_LCD_2x16_Clk(LCD_2X16);
 }
 
+//Configuración del TIM4:
+uint8_t FIND_PINSOURCE(uint32_t Pin)
+{
+	if     (Pin == GPIO_Pin_12) return GPIO_PinSource12;
+	else if(Pin == GPIO_Pin_13) return GPIO_PinSource13;
+	else if(Pin == GPIO_Pin_14) return GPIO_PinSource14;
+	else if(Pin == GPIO_Pin_15) return GPIO_PinSource15;
+}
+
+/*------------------------------------------------------------------------------
+NOTAS
+------------------------------------------------------------------------------*/
+/* -----------------------------------------------------------------------
+[1]	 AYUDA::::::TIM4 Configuration: generate 4 PWM signals with 4 different duty cycles.
+
+ 	 La base de tiempo del TIM4 es APB1 y PCLK1 x 2 (ver STM32 CubeMX- Clock Config)
+ 	 Para HCLK = 180 MHz (system core clock) la base de tiempo es de: 90 MHz
+
+ 	 Para reducir la base de tiempo utilizamos el prescaler del timer
+
+ 	 PrescalerValue= (90 MHz / Base de tiempo del timer elegida) -1
+
+ 	 Luego TIM_Period es el periodo de la senal de salida del timer
+
+ 	 Si Base de tiempo = 200.000 Hz y TIM_Period = 399
+
+ 	 La se�al de salida del timer es:
+
+ 	 	 	 	 1
+ 	 f =  --------------- = 500Hz
+ 	 	  (399+1)/200.000
+
+ 	 Otro metodo:
+
+ 	 	 	 	 	 	 	 1
+ 	 f=	----------------------------------------------		Donde Tim4_Clock= PCLK1 x 2 (ver Clock_Config.XLS)
+ 	 	(Tim_Period+1) * (PrescalerValue+1)/Tim4_Clock		en este ejemplo es 90 MHz
+
+ 	 Note:
+ 	 SystemCoreClock variable holds HCLK frequency and is defined in system_stm32f4xx.c file.
+ 	 Each time the core clock (HCLK) changes, user had to call SystemCoreClockUpdate()
+ 	 function to update SystemCoreClock variable value. Otherwise, any configuration
+ 	 based on this variable will be incorrect.
+ ----------------------------------------------------------------------- */
