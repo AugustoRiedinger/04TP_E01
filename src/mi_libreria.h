@@ -20,6 +20,9 @@
 #define	BufferLength 	  20
 #define  MaxDigCount 	  4035
 
+TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
+TIM_OCInitTypeDef  TIM_OCInitStructure;
+
 //--------------------------------------------------------------
 // LCD Kommandos (siehe Datenblatt)
 //--------------------------------------------------------------
@@ -91,6 +94,7 @@ void	PRINT_LCD_2x16(LCD_2X16_t*, uint8_t, uint8_t, char*);
 void 	INIT_SYSTICK(float);
 
 void INIT_TIM4(GPIO_TypeDef*, uint16_t);
+void SET_TIM4(uint16_t, uint32_t T, uint32_t, uint32_t);
 
 
 #endif //mi_libreria_H
