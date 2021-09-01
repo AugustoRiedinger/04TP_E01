@@ -472,8 +472,6 @@ void SET_TIM4(uint16_t Pin, uint32_t TimeBase, uint32_t Freq, uint32_t DutyCycle
 	uint32_t DT_Value;
 	uint16_t PrescalerValue = 0;
 
-	/* TIM Configuration */
-	TIM_Config();
 	SystemCoreClockUpdate();
 
 	/* Compute the prescaler value */
