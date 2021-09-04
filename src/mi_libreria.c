@@ -493,32 +493,45 @@ void SET_TIM4(uint16_t Pin, uint32_t TimeBase, uint32_t Freq, uint32_t DutyCycle
 	//Configuración del Duty Cycle para cada pin:
 	DT_Value = DutyCycle * (TIM_TimeBaseStructure.TIM_Period + 1) / 100;
 
-	if (Pin == GPIO_Pin_12)
-	{
+	if (Pin == GPIO_Pin_12) {
+		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */
+		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
 		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
 		TIM_OCInitStructure.TIM_Pulse = DT_Value;
+		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
 		TIM_OC1Init(TIM4, &TIM_OCInitStructure);
+
 		TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
-	}
-	else if(Pin == GPIO_Pin_13)
-	{
+	} else if (Pin == GPIO_Pin_13) {
+		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */
+		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
 		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
 		TIM_OCInitStructure.TIM_Pulse = DT_Value;
+		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
 		TIM_OC2Init(TIM4, &TIM_OCInitStructure);
+
 		TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable);
-	}
-	else if(Pin == GPIO_Pin_14)
-	{
+	} else if (Pin == GPIO_Pin_14) {
+		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */
+		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
 		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
 		TIM_OCInitStructure.TIM_Pulse = DT_Value;
+		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
 		TIM_OC3Init(TIM4, &TIM_OCInitStructure);
+
 		TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Enable);
-	}
-	else if(Pin == GPIO_Pin_15)
-	{
+	} else if (Pin == GPIO_Pin_15) {
+		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */
+		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
 		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
 		TIM_OCInitStructure.TIM_Pulse = DT_Value;
+		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
 		TIM_OC4Init(TIM4, &TIM_OCInitStructure);
+
 		TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Enable);
 	}
 
@@ -526,6 +539,7 @@ void SET_TIM4(uint16_t Pin, uint32_t TimeBase, uint32_t Freq, uint32_t DutyCycle
 	TIM_ARRPreloadConfig(TIM4, ENABLE);
     TIM_Cmd(TIM4, ENABLE);
 }
+
 
 
 
