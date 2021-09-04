@@ -1,4 +1,4 @@
-/**********
+/****
   * @file    main.c
   * @author  G. Garcia & A. Riedinger.
   * @version 0.1
@@ -13,7 +13,7 @@
   *
   * ENTRADAS:
   	  * UserButton	PC13
-  **********/
+  ****/
 
 /*------------------------------------------------------------------------------
 LIBRERIAS:
@@ -77,37 +77,7 @@ BUCLE PRINCIPAL:
 ------------------------------------------------------------------------------*/
     while(1)
     {
-		if (READ_DI(UserButton_Port, UserButton) && Pulses == 0) {
-			DutyCycle = 17;
-			SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
-			Pulses = 1;
-		} else if (READ_DI(UserButton_Port, UserButton) && Pulses == 1) {
-			DutyCycle = DutyCycle * 2;
-			SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
-			Pulses = 2;
-		} else if (READ_DI(UserButton_Port, UserButton) && Pulses == 2) {
-			DutyCycle = DutyCycle * 2;
-			SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
-			Pulses = 3;
-		}
-		else if (READ_DI(UserButton_Port, UserButton) && Pulses == 3) {
-			DutyCycle = DutyCycle * 2;
-			SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
-			Pulses = 4;
-		} else if (READ_DI(UserButton_Port, UserButton) && Pulses == 4) {
-			DutyCycle = DutyCycle * 2;
-			SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
-			Pulses = 5;
-		} else if (READ_DI(UserButton_Port, UserButton) && Pulses == 5) {
-			DutyCycle = DutyCycle * 2;
-			SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
-			Pulses = 6;
-		} else if (READ_DI(UserButton_Port, UserButton) && Pulses == 6) {
-			DutyCycle = DutyCycle * 2;
-			SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
-			Pulses = 0;
-		}
+    	DutyCycle = 50;
+    	SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
     }
 }
-
-
