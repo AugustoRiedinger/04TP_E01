@@ -429,9 +429,8 @@ void INIT_TIM4(GPIO_TypeDef* Port, uint16_t Pin)
 {
 	  GPIO_InitTypeDef GPIO_InitStructure;
 
-	  //TIM4 clock enable:
-	  RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
 
+	  RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
 	  //Habilitacion de la senal de reloj para el periferico:
 	  uint32_t Clock;
 	  Clock = FIND_CLOCK(Port);
@@ -494,45 +493,32 @@ void SET_TIM4(uint16_t Pin, uint32_t TimeBase, uint32_t Freq, uint32_t DutyCycle
 	//Configuración del Duty Cycle para cada pin:
 	DT_Value = DutyCycle * (TIM_TimeBaseStructure.TIM_Period + 1) / 100;
 
-	if (Pin == GPIO_Pin_12) {
-		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */
-		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+	if (Pin == GPIO_Pin_12)
+	{
 		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
 		TIM_OCInitStructure.TIM_Pulse = DT_Value;
-		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
-
 		TIM_OC1Init(TIM4, &TIM_OCInitStructure);
-
 		TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
-	} else if (Pin == GPIO_Pin_13) {
-		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */
-		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+	}
+	else if(Pin == GPIO_Pin_13)
+	{
 		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
 		TIM_OCInitStructure.TIM_Pulse = DT_Value;
-		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
-
 		TIM_OC2Init(TIM4, &TIM_OCInitStructure);
-
 		TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable);
-	} else if (Pin == GPIO_Pin_14) {
-		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */
-		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+	}
+	else if(Pin == GPIO_Pin_14)
+	{
 		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
 		TIM_OCInitStructure.TIM_Pulse = DT_Value;
-		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
-
 		TIM_OC3Init(TIM4, &TIM_OCInitStructure);
-
 		TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Enable);
-	} else if (Pin == GPIO_Pin_15) {
-		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */
-		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+	}
+	else if(Pin == GPIO_Pin_15)
+	{
 		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
 		TIM_OCInitStructure.TIM_Pulse = DT_Value;
-		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
-
 		TIM_OC4Init(TIM4, &TIM_OCInitStructure);
-
 		TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Enable);
 	}
 
