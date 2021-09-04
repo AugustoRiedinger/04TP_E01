@@ -29,6 +29,7 @@ DEFINICIONES:
 //Ticks del despachador de tareas:
 #define Ticks_ReadUserButton 5
 #define Ticks_RefreshTIM4	 10
+#define Ticks_RefreshLCD	 4
 
 //User Button:
 #define UserButton_Port	GPIOC
@@ -47,6 +48,7 @@ DECLARACION DE FUNCIONES LOCALES:
 ------------------------------------------------------------------------------*/
 void READ_USER_BUTTON(void);
 void REFRESH_TIM4(void);
+void REFRESH_LCD(void);
 
 /*------------------------------------------------------------------------------
 DECLARACION VARIABLES GLOBALES:
@@ -70,6 +72,7 @@ uint32_t Pulses = 0;
 //Variables del TS:
 uint32_t ReadUserButton = 0;
 uint32_t RefreshTIM4 = 0;
+uint32_t RefreshLCD = 0;
 
 int main(void)
 {
@@ -97,6 +100,8 @@ BUCLE PRINCIPAL:
 			REFRESH_TIM4();
 		else if(ReadUserButton == Ticks_ReadUserButton)
 			READ_USER_BUTTON();
+		else if(RefreshLCD == Ticks_RefreshLCD)
+			REFRESH_LCD();
     }
 }
 
@@ -108,6 +113,7 @@ void SysTick_Handler()
 {
 	ReadUserButton++;
 	RefreshTIM4++;
+	RefreshLCD++;
 }
 
 /*------------------------------------------------------------------------------
@@ -136,5 +142,11 @@ void REFRESH_TIM4()
 
 	//Seteo del OC1-TIM4 con un nuevo DT:
 	SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
+}
+
+//Refresco del LCD:
+void REFRESH_LCD()
+{
+
 }
 
