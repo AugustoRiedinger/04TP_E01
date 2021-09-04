@@ -535,7 +535,7 @@ void SET_TIM4(uint16_t Pin, uint32_t TimeBase, uint32_t Freq, uint32_t DutyCycle
 		TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Enable);
 	}
 
-	//Cargar los valores al TIM4:
+	//Cargar valores al TIM4:
 	TIM_ARRPreloadConfig(TIM4, ENABLE);
     TIM_Cmd(TIM4, ENABLE);
 }
