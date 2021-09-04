@@ -473,7 +473,10 @@ void SET_TIM4(uint16_t Pin, uint32_t TimeBase, uint32_t Freq, uint32_t DutyCycle
 	uint16_t PrescalerValue = 0;
 	uint16_t TIM_Period = 0;
 
+	//Actualización de los valores del TIM4:
 	SystemCoreClockUpdate();
+	TIM_ARRPreloadConfig(TIM4, DISABLE);
+	TIM_Cmd(TIM4, DISABLE);
 
 	/* Compute the prescaler value */
 	PrescalerValue = (uint16_t) ((SystemCoreClock / 2) / TimeBase) - 1;
