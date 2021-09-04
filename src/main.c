@@ -27,7 +27,7 @@ DEFINICIONES:
 #define TimeINT_Systick 0.05
 
 //Ticks del despachador de tareas:
-#define Ticks_ReadUserButton 2
+#define Ticks_ReadUserButton 5
 #define Ticks_RefreshTIM4	 10
 
 //User Button:
@@ -113,16 +113,28 @@ void SysTick_Handler()
 /*------------------------------------------------------------------------------
 TAREAS:
 ------------------------------------------------------------------------------*/
+//Lectura del UserButton:
 void READ_USER_BUTTON()
 {
+	//Reinicio de los Ticks:
 	ReadUserButton = 0;
+
+	//Si se presiona el boton, se aumenta el DT en un 25%:
 	if(READ_DI(UserButton_Port, UserButton))
-		DutyCycle = DutyCycle + 25;
+		DutyCycle = DutyCycle + 15;
+
+	//Si se llego al maximo DT, se reinicia:
+	if(DutyCycle >= 100)
+		DutyCycle = 0;
 }
 
+//Refresco del TIM4:
 void REFRESH_TIM4()
 {
+	//Reinicio de los Ticks:
 	RefreshTIM4 = 0;
+
+	//Seteo del OC1-TIM4 con un nuevo DT:
 	SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
 }
 
