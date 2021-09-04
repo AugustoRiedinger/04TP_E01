@@ -471,6 +471,7 @@ void SET_TIM4(uint16_t Pin, uint32_t TimeBase, uint32_t Freq, uint32_t DutyCycle
 {
 	uint32_t DT_Value;
 	uint16_t PrescalerValue = 0;
+	uint16_t TIM_Period = 0;
 
 	SystemCoreClockUpdate();
 
@@ -479,6 +480,7 @@ void SET_TIM4(uint16_t Pin, uint32_t TimeBase, uint32_t Freq, uint32_t DutyCycle
 
 	/* Time base configuration */
 	TIM_TimeBaseStructure.TIM_Period = TimeBase / Freq - 1;
+	TIM_Period = TimeBase / Freq - 1;
 
 	TIM_TimeBaseStructure.TIM_Prescaler = PrescalerValue;
 	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
@@ -491,7 +493,7 @@ void SET_TIM4(uint16_t Pin, uint32_t TimeBase, uint32_t Freq, uint32_t DutyCycle
 	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
 
 	//Configuración del Duty Cycle para cada pin:
-	DT_Value = DutyCycle * (TIM_TimeBaseStructure.TIM_Period + 1) / 100;
+	DT_Value = DutyCycle * (TIM_Period + 1) / 100;
 
 	if (Pin == GPIO_Pin_12) {
 		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */

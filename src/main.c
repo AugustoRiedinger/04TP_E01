@@ -71,13 +71,15 @@ CONFIGURACION DEL MICRO:
 	//Inicializacion del TIM4:
 	INIT_TIM4(OC1_Port, OC1);
 
+	DutyCycle = 50;
+	SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
+
 
 /*------------------------------------------------------------------------------
 BUCLE PRINCIPAL:
 ------------------------------------------------------------------------------*/
     while(1)
     {
-    	DutyCycle = 50;
-    	SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
+
     }
 }
