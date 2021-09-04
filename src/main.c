@@ -27,8 +27,8 @@ DEFINICIONES:
 #define TimeINT_Systick 0.05
 
 //Ticks del despachador de tareas:
-#define Ticks_ReadDI		2
-#define Ticks_RefreshTIM4	4
+#define Ticks_ReadUserButton 2
+#define Ticks_RefreshTIM4	 4
 
 //User Button:
 #define UserButton_Port	GPIOC
@@ -45,6 +45,8 @@ DEFINICIONES:
 /*------------------------------------------------------------------------------
 DECLARACION DE FUNCIONES LOCALES:
 ------------------------------------------------------------------------------*/
+void READ_USER_BUTTON(void);
+void REFRESH_TIM4(void);
 
 /*------------------------------------------------------------------------------
 DECLARACION VARIABLES GLOBALES:
@@ -60,13 +62,13 @@ LCD_2X16_t LCD_2X16[] = {
 			{ TLCD_D7, GPIOF, GPIO_Pin_7,  RCC_AHB1Periph_GPIOF, Bit_RESET }, };
 
 //Variable de control del ciclo de trabajo de la senal a generar:
-uint32_t DutyCycle = 0;
+uint32_t DutyCycle = 50;
 
 //Variable para contar cuantas veces se pulso el boton:
 uint32_t Pulses = 0;
 
 //Variables del TS:
-uint32_t ReadDI = 0;
+uint32_t ReadUserButton = 0;
 uint32_t RefreshTIM4 = 0;
 
 int main(void)
@@ -82,16 +84,16 @@ CONFIGURACION DEL MICRO:
 	//Inicializacion del TIM4:
 	INIT_TIM4(OC1_Port, OC1);
 
-	DutyCycle = 50;
-	SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
-
-
 /*------------------------------------------------------------------------------
 BUCLE PRINCIPAL:
 ------------------------------------------------------------------------------*/
     while(1)
     {
-
+		//Task Scheduler:
+		if (ReadUserButton == Ticks_ReadUserButton)
+			READ_USER_BUTTON();
+		else if (RefreshTIM4 == Ticks_RefreshTIM4)
+			REFRESH_TIM4();
     }
 }
 
@@ -101,7 +103,20 @@ INTERRUPCIONES:
 //Interrupcion por tiempo - Systick cada 50mseg:
 void SysTick_Handler()
 {
-	ReadDI++;
+	ReadUserButton++;
 	RefreshTIM4++;
+}
+
+/*------------------------------------------------------------------------------
+TAREAS:
+------------------------------------------------------------------------------*/
+void READ_USER_BUTTON()
+{
+	READ_DI(UserButton_Port, UserButton);
+}
+
+void REFRESH_TIM4()
+{
+	SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
 }
 
