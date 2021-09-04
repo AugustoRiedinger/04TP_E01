@@ -23,6 +23,13 @@ LIBRERIAS:
 /*------------------------------------------------------------------------------
 DEFINICIONES:
 ------------------------------------------------------------------------------*/
+//Tiempo de interrupcion por Systick - 50mseg:
+#define TimeINT_Systick 0.05
+
+//Ticks del despachador de tareas:
+#define Ticks_ReadDI		2
+#define Ticks_RefreshTIM4	4
+
 //User Button:
 #define UserButton_Port	GPIOC
 #define UserButton		GPIO_Pin_13
@@ -58,6 +65,10 @@ uint32_t DutyCycle = 0;
 //Variable para contar cuantas veces se pulso el boton:
 uint32_t Pulses = 0;
 
+//Variables del TS:
+uint32_t ReadDI = 0;
+uint32_t RefreshTIM4 = 0;
+
 int main(void)
 {
 /*------------------------------------------------------------------------------
@@ -83,3 +94,14 @@ BUCLE PRINCIPAL:
 
     }
 }
+
+/*------------------------------------------------------------------------------
+INTERRUPCIONES:
+------------------------------------------------------------------------------*/
+//Interrupcion por tiempo - Systick cada 50mseg:
+void SysTick_Handler()
+{
+	ReadDI++;
+	RefreshTIM4++;
+}
+
