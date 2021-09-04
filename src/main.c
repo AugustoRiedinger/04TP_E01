@@ -28,7 +28,7 @@ DEFINICIONES:
 
 //Ticks del despachador de tareas:
 #define Ticks_ReadUserButton 2
-#define Ticks_RefreshTIM4	 4
+#define Ticks_RefreshTIM4	 10
 
 //User Button:
 #define UserButton_Port	GPIOC
@@ -62,7 +62,7 @@ LCD_2X16_t LCD_2X16[] = {
 			{ TLCD_D7, GPIOF, GPIO_Pin_7,  RCC_AHB1Periph_GPIOF, Bit_RESET }, };
 
 //Variable de control del ciclo de trabajo de la senal a generar:
-uint32_t DutyCycle = 50;
+uint32_t DutyCycle = 0;
 
 //Variable para contar cuantas veces se pulso el boton:
 uint32_t Pulses = 0;
@@ -78,6 +78,9 @@ CONFIGURACION DEL MICRO:
 ------------------------------------------------------------------------------*/
 	SystemInit();
 
+	//[1]Inicializacion de interrupcion por tiempo cada 50 mseg:
+	INIT_SYSTICK(TimeINT_Systick);
+
 	//Inicializacion del DISPLAY LCD:
 	INIT_LCD_2x16(LCD_2X16);
 
@@ -90,9 +93,7 @@ BUCLE PRINCIPAL:
     while(1)
     {
 		//Task Scheduler:
-		if (ReadUserButton == Ticks_ReadUserButton)
-			READ_USER_BUTTON();
-		else if (RefreshTIM4 == Ticks_RefreshTIM4)
+		if(RefreshTIM4 == Ticks_RefreshTIM4)
 			REFRESH_TIM4();
     }
 }
@@ -112,11 +113,13 @@ TAREAS:
 ------------------------------------------------------------------------------*/
 void READ_USER_BUTTON()
 {
-	READ_DI(UserButton_Port, UserButton);
+	ReadUserButton = 0;
 }
 
 void REFRESH_TIM4()
 {
+	DutyCycle = 25;
 	SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
+	RefreshTIM4 = 0;
 }
 
