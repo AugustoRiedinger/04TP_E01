@@ -95,6 +95,8 @@ BUCLE PRINCIPAL:
 		//Task Scheduler:
 		if(RefreshTIM4 == Ticks_RefreshTIM4)
 			REFRESH_TIM4();
+		else if(ReadUserButton == Ticks_ReadUserButton)
+			READ_USER_BUTTON();
     }
 }
 
@@ -114,12 +116,13 @@ TAREAS:
 void READ_USER_BUTTON()
 {
 	ReadUserButton = 0;
+	if(READ_DI(UserButton_Port, UserButton))
+		DutyCycle = DutyCycle + 25;
 }
 
 void REFRESH_TIM4()
 {
-	DutyCycle = 25;
-	SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
 	RefreshTIM4 = 0;
+	SET_TIM4(OC1, TimeBase, Freq, DutyCycle);
 }
 
