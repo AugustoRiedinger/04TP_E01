@@ -147,6 +147,30 @@ void REFRESH_TIM4()
 //Refresco del LCD:
 void REFRESH_LCD()
 {
+	//Reinicio de los Ticks:
+	RefreshLCD = 0;
 
+	//Refresco del LCD:
+	CLEAR_LCD_2x16(LCD_2X16);
+
+	//Buffers para mostrar valores de variables:
+	char BufferFreq[BufferLength];
+	char BufferVolt[BufferLength];
+	char BufferDT[BufferLength];
+
+	//Calculo del voltaje en base al DT:
+	float Volt = DutyCycle * 3.3 / 100;
+
+	//Mostrar valor de frecuencia:
+	sprintf(BufferFreq, "FREQ = %d", Freq);
+	PRINT_LCD_2x16(LCD_2X16, 2, 0, BufferFreq);
+
+	//Mostrar valor del DT:
+	sprintf(BufferDT, "DT = %d", DutyCycle);
+	PRINT_LCD_2x16(LCD_2X16, 0, 1, BufferDT);
+
+	//Mostrar valor de voltaje:
+	sprintf(BufferVolt, "V = %.1f", Volt);
+	PRINT_LCD_2x16(LCD_2X16, 8, 1, BufferVolt);
 }
 
