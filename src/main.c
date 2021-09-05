@@ -126,7 +126,7 @@ void READ_USER_BUTTON()
 	ReadUserButton = 0;
 
 	//Si se presiona el boton, se aumenta el DT en un 25%:
-	if(READ_DI(UserButton_Port, UserButton))
+	if(GPIO_ReadInputDataBit(UserButton_Port, UserButton))
 		DutyCycle = DutyCycle + 15;
 
 	//Si se llego al maximo DT, se reinicia:
@@ -163,7 +163,7 @@ void REFRESH_LCD()
 
 	//Mostrar valor de frecuencia:
 	sprintf(BufferFreq, "FREQ = %d", Freq);
-	PRINT_LCD_2x16(LCD_2X16, 2, 0, BufferFreq);
+	PRINT_LCD_2x16(LCD_2X16, 3, 0, BufferFreq);
 
 	//Mostrar valor del DT:
 	sprintf(BufferDT, "DT = %d", DutyCycle);
@@ -171,6 +171,6 @@ void REFRESH_LCD()
 
 	//Mostrar valor de voltaje:
 	sprintf(BufferVolt, "V = %.1f", Volt);
-	PRINT_LCD_2x16(LCD_2X16, 8, 1, BufferVolt);
+	PRINT_LCD_2x16(LCD_2X16, 9, 1, BufferVolt);
 }
 
