@@ -545,7 +545,95 @@ void SET_TIM4(uint16_t Pin, uint32_t TimeBase, uint32_t Freq, uint32_t DutyCycle
     TIM_Cmd(TIM4, ENABLE);
 }
 
+/*****************************************************************************
+SET_TIM1
+	* @author	A. Riedinger.
+	* @brief	Setea el TIM1 a una determinada frecuencia.
+	* @returns	void
+	* @param
+		- Port		Puerto del timer a inicializar. Ej: GPIOX.
+		- Pin		Pin del LED. Ej: GPIO_Pin_X
 
+	* @ej
+		- INIT_TIM4(GPIOX, GPIO_Pin_X); //Inicialización del Pin PXXX como TIMER4.
+******************************************************************************/
+void SET_TIM1(uint16_t Pin, uint32_t TimeBase, uint32_t Freq, uint32_t DutyCycle)
+{
+	uint32_t DT_Value;
+	uint16_t PrescalerValue = 0;
+	uint16_t TIM_Period = 0;
+
+	//Actualización de los valores del TIM4:
+	SystemCoreClockUpdate();
+	TIM_ARRPreloadConfig(TIM1, DISABLE);
+	TIM_Cmd(TIM1, DISABLE);
+
+	/* Compute the prescaler value */
+	PrescalerValue = (uint16_t) ((SystemCoreClock / 2) / TimeBase) - 1;
+
+	/* Time base configuration */
+	TIM_TimeBaseStructure.TIM_Period = TimeBase / Freq - 1;
+	TIM_Period = TimeBase / Freq - 1;
+
+	TIM_TimeBaseStructure.TIM_Prescaler = PrescalerValue;
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+
+	TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
+
+	/* PWM1 Mode configuration: Channel1*/
+	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+	//Configuración del Duty Cycle para cada pin:
+	DT_Value = DutyCycle * (TIM_Period + 1) / 100;
+
+	if (Pin == GPIO_Pin_12) {
+		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */
+		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+		TIM_OCInitStructure.TIM_Pulse = DT_Value;
+		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+		TIM_OC1Init(TIM1, &TIM_OCInitStructure);
+
+		TIM_OC1PreloadConfig(TIM1, TIM_OCPreload_Enable);
+	} else if (Pin == GPIO_Pin_13) {
+		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */
+		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+		TIM_OCInitStructure.TIM_Pulse = DT_Value;
+		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+		TIM_OC2Init(TIM1, &TIM_OCInitStructure);
+
+		TIM_OC2PreloadConfig(TIM1, TIM_OCPreload_Enable);
+	} else if (Pin == GPIO_Pin_14) {
+		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */
+		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+		TIM_OCInitStructure.TIM_Pulse = DT_Value;
+		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+		TIM_OC3Init(TIM1, &TIM_OCInitStructure);
+
+		TIM_OC3PreloadConfig(TIM1, TIM_OCPreload_Enable);
+	} else if (Pin == GPIO_Pin_15) {
+		/* PWM1 Mode configuration: Channel1 : para TIM4 es PD12 */
+		TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+		TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+		TIM_OCInitStructure.TIM_Pulse = DT_Value;
+		TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+		TIM_OC4Init(TIM1, &TIM_OCInitStructure);
+
+		TIM_OC4PreloadConfig(TIM1, TIM_OCPreload_Enable);
+	}
+
+	//Cargar valores al TIM4:
+	TIM_ARRPreloadConfig(TIM1, ENABLE);
+    TIM_Cmd(TIM1, ENABLE);
+}
 
 
 /*------------------------------------------------------------------------------

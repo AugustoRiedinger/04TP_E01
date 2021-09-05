@@ -1936,6 +1936,8 @@ Discarded input sections
                 0x0000000000000000       0x4c src/mi_libreria.o
  .text.DAC_FUNC
                 0x0000000000000000       0x44 src/mi_libreria.o
+ .text.SET_TIM1
+                0x0000000000000000      0x188 src/mi_libreria.o
  .text.FIND_ADC_TYPE
                 0x0000000000000000       0xf8 src/mi_libreria.o
  .text.FIND_RCC_APB
@@ -2933,15 +2935,15 @@ LOAD /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-
                 0x0000000000000899       0x22 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/crtn.o
 OUTPUT(04TP_E01.elf elf32-littlearm)
 
-.debug_info     0x0000000000000000     0x62be
+.debug_info     0x0000000000000000     0x633e
  .debug_info    0x0000000000000000      0x628 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.o
  .debug_info    0x0000000000000628      0xe36 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.o
  .debug_info    0x000000000000145e     0x1c74 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_tim.o
  .debug_info    0x00000000000030d2      0xc9a src/main.o
- .debug_info    0x0000000000003d6c     0x1da0 src/mi_libreria.o
- .debug_info    0x0000000000005b0c       0x75 src/startup_stm32f429x.o
- .debug_info    0x0000000000005b81      0x143 src/stm32f4xx_it.o
- .debug_info    0x0000000000005cc4      0x5fa src/system_stm32f4xx.o
+ .debug_info    0x0000000000003d6c     0x1e20 src/mi_libreria.o
+ .debug_info    0x0000000000005b8c       0x75 src/startup_stm32f429x.o
+ .debug_info    0x0000000000005c01      0x143 src/stm32f4xx_it.o
+ .debug_info    0x0000000000005d44      0x5fa src/system_stm32f4xx.o
 
 .debug_abbrev   0x0000000000000000      0xc30
  .debug_abbrev  0x0000000000000000      0x1b8 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.o
@@ -2953,7 +2955,7 @@ OUTPUT(04TP_E01.elf elf32-littlearm)
  .debug_abbrev  0x0000000000000a60       0x78 src/stm32f4xx_it.o
  .debug_abbrev  0x0000000000000ad8      0x158 src/system_stm32f4xx.o
 
-.debug_aranges  0x0000000000000000      0x730
+.debug_aranges  0x0000000000000000      0x738
  .debug_aranges
                 0x0000000000000000       0x88 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.o
  .debug_aranges
@@ -2963,35 +2965,35 @@ OUTPUT(04TP_E01.elf elf32-littlearm)
  .debug_aranges
                 0x0000000000000538       0x40 src/main.o
  .debug_aranges
-                0x0000000000000578      0x108 src/mi_libreria.o
+                0x0000000000000578      0x110 src/mi_libreria.o
  .debug_aranges
-                0x0000000000000680       0x28 src/startup_stm32f429x.o
+                0x0000000000000688       0x28 src/startup_stm32f429x.o
  .debug_aranges
-                0x00000000000006a8       0x58 src/stm32f4xx_it.o
+                0x00000000000006b0       0x58 src/stm32f4xx_it.o
  .debug_aranges
-                0x0000000000000700       0x30 src/system_stm32f4xx.o
+                0x0000000000000708       0x30 src/system_stm32f4xx.o
 
-.debug_ranges   0x0000000000000000      0x6b8
+.debug_ranges   0x0000000000000000      0x6c0
  .debug_ranges  0x0000000000000000       0x78 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.o
  .debug_ranges  0x0000000000000078      0x1a8 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.o
  .debug_ranges  0x0000000000000220      0x2e8 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_tim.o
  .debug_ranges  0x0000000000000508       0x30 src/main.o
- .debug_ranges  0x0000000000000538       0xf8 src/mi_libreria.o
- .debug_ranges  0x0000000000000630       0x20 src/startup_stm32f429x.o
- .debug_ranges  0x0000000000000650       0x48 src/stm32f4xx_it.o
- .debug_ranges  0x0000000000000698       0x20 src/system_stm32f4xx.o
+ .debug_ranges  0x0000000000000538      0x100 src/mi_libreria.o
+ .debug_ranges  0x0000000000000638       0x20 src/startup_stm32f429x.o
+ .debug_ranges  0x0000000000000658       0x48 src/stm32f4xx_it.o
+ .debug_ranges  0x00000000000006a0       0x20 src/system_stm32f4xx.o
 
-.debug_line     0x0000000000000000     0x24a9
+.debug_line     0x0000000000000000     0x24e9
  .debug_line    0x0000000000000000      0x372 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.o
  .debug_line    0x0000000000000372      0x64e Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.o
  .debug_line    0x00000000000009c0      0xac3 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_tim.o
  .debug_line    0x0000000000001483      0x2d7 src/main.o
- .debug_line    0x000000000000175a      0x8c8 src/mi_libreria.o
- .debug_line    0x0000000000002022       0x7a src/startup_stm32f429x.o
- .debug_line    0x000000000000209c      0x203 src/stm32f4xx_it.o
- .debug_line    0x000000000000229f      0x20a src/system_stm32f4xx.o
+ .debug_line    0x000000000000175a      0x908 src/mi_libreria.o
+ .debug_line    0x0000000000002062       0x7a src/startup_stm32f429x.o
+ .debug_line    0x00000000000020dc      0x203 src/stm32f4xx_it.o
+ .debug_line    0x00000000000022df      0x20a src/system_stm32f4xx.o
 
-.debug_str      0x0000000000000000     0x2823
+.debug_str      0x0000000000000000     0x282c
  .debug_str     0x0000000000000000      0x4d0 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.o
                                         0x526 (size before relaxing)
  .debug_str     0x00000000000004d0      0x7db Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.o
@@ -3000,11 +3002,11 @@ OUTPUT(04TP_E01.elf elf32-littlearm)
                                         0xe53 (size before relaxing)
  .debug_str     0x0000000000001827      0x53b src/main.o
                                         0x8b3 (size before relaxing)
- .debug_str     0x0000000000001d62      0x99c src/mi_libreria.o
-                                       0x147e (size before relaxing)
- .debug_str     0x00000000000026fe       0x96 src/stm32f4xx_it.o
+ .debug_str     0x0000000000001d62      0x9a5 src/mi_libreria.o
+                                       0x1487 (size before relaxing)
+ .debug_str     0x0000000000002707       0x96 src/stm32f4xx_it.o
                                         0x262 (size before relaxing)
- .debug_str     0x0000000000002794       0x8f src/system_stm32f4xx.o
+ .debug_str     0x000000000000279d       0x8f src/system_stm32f4xx.o
                                         0x418 (size before relaxing)
 
 .comment        0x0000000000000000       0x7c
@@ -3017,45 +3019,45 @@ OUTPUT(04TP_E01.elf elf32-littlearm)
  .comment       0x000000000000007c       0x7d src/stm32f4xx_it.o
  .comment       0x000000000000007c       0x7d src/system_stm32f4xx.o
 
-.debug_frame    0x0000000000000000     0x2a18
+.debug_frame    0x0000000000000000     0x2a3c
  .debug_frame   0x0000000000000000      0x23c Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_gpio.o
  .debug_frame   0x000000000000023c      0x814 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_rcc.o
  .debug_frame   0x0000000000000a50      0xe54 Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_tim.o
  .debug_frame   0x00000000000018a4       0xac src/main.o
- .debug_frame   0x0000000000001950      0x474 src/mi_libreria.o
- .debug_frame   0x0000000000001dc4       0xf0 src/stm32f4xx_it.o
- .debug_frame   0x0000000000001eb4       0x7c src/system_stm32f4xx.o
- .debug_frame   0x0000000000001f30       0x2c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-init.o)
- .debug_frame   0x0000000000001f5c       0x70 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sprintf.o)
- .debug_frame   0x0000000000001fcc       0x40 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o)
- .debug_frame   0x000000000000200c       0x6c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o)
- .debug_frame   0x0000000000002078       0x40 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-localeconv.o)
- .debug_frame   0x00000000000020b8       0x30 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-malloc.o)
- .debug_frame   0x00000000000020e8       0x40 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mallocr.o)
- .debug_frame   0x0000000000002128       0x28 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memcpy-stub.o)
- .debug_frame   0x0000000000002150       0x30 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mlock.o)
- .debug_frame   0x0000000000002180      0x240 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
- .debug_frame   0x00000000000023c0       0x2c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sbrkr.o)
- .debug_frame   0x00000000000023ec       0x6c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
- .debug_frame   0x0000000000002458       0x28 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-callocr.o)
- .debug_frame   0x0000000000002480       0x60 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-freer.o)
- .debug_frame   0x00000000000024e0       0x68 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
- .debug_frame   0x0000000000002548       0xb0 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-lock.o)
- .debug_frame   0x00000000000025f8       0x48 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mbtowc_r.o)
- .debug_frame   0x0000000000002640       0x28 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memmove.o)
- .debug_frame   0x0000000000002668       0x20 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memset.o)
- .debug_frame   0x0000000000002688       0x50 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reallocr.o)
- .debug_frame   0x00000000000026d8       0x5c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reent.o)
- .debug_frame   0x0000000000002734       0x3c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-wctomb_r.o)
- .debug_frame   0x0000000000002770       0xac /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_arm_addsubdf3.o)
- .debug_frame   0x000000000000281c       0x50 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_arm_muldivdf3.o)
- .debug_frame   0x000000000000286c       0xc4 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_arm_cmpdf2.o)
- .debug_frame   0x0000000000002930       0x20 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_arm_unorddf2.o)
- .debug_frame   0x0000000000002950       0x24 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_arm_fixdfsi.o)
- .debug_frame   0x0000000000002974       0x24 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_arm_truncdfsf2.o)
- .debug_frame   0x0000000000002998       0x2c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_aeabi_uldivmod.o)
- .debug_frame   0x00000000000029c4       0x34 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_udivmoddi4.o)
- .debug_frame   0x00000000000029f8       0x20 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libnosys.a(sbrk.o)
+ .debug_frame   0x0000000000001950      0x498 src/mi_libreria.o
+ .debug_frame   0x0000000000001de8       0xf0 src/stm32f4xx_it.o
+ .debug_frame   0x0000000000001ed8       0x7c src/system_stm32f4xx.o
+ .debug_frame   0x0000000000001f54       0x2c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-init.o)
+ .debug_frame   0x0000000000001f80       0x70 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sprintf.o)
+ .debug_frame   0x0000000000001ff0       0x40 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfprintf.o)
+ .debug_frame   0x0000000000002030       0x6c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-dtoa.o)
+ .debug_frame   0x000000000000209c       0x40 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-localeconv.o)
+ .debug_frame   0x00000000000020dc       0x30 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-malloc.o)
+ .debug_frame   0x000000000000210c       0x40 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mallocr.o)
+ .debug_frame   0x000000000000214c       0x28 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x0000000000002174       0x30 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mlock.o)
+ .debug_frame   0x00000000000021a4      0x240 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mprec.o)
+ .debug_frame   0x00000000000023e4       0x2c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-sbrkr.o)
+ .debug_frame   0x0000000000002410       0x6c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-svfiprintf.o)
+ .debug_frame   0x000000000000247c       0x28 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-callocr.o)
+ .debug_frame   0x00000000000024a4       0x60 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-freer.o)
+ .debug_frame   0x0000000000002504       0x68 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-locale.o)
+ .debug_frame   0x000000000000256c       0xb0 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-lock.o)
+ .debug_frame   0x000000000000261c       0x48 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-mbtowc_r.o)
+ .debug_frame   0x0000000000002664       0x28 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memmove.o)
+ .debug_frame   0x000000000000268c       0x20 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-memset.o)
+ .debug_frame   0x00000000000026ac       0x50 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reallocr.o)
+ .debug_frame   0x00000000000026fc       0x5c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-reent.o)
+ .debug_frame   0x0000000000002758       0x3c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libc.a(lib_a-wctomb_r.o)
+ .debug_frame   0x0000000000002794       0xac /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_arm_addsubdf3.o)
+ .debug_frame   0x0000000000002840       0x50 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_arm_muldivdf3.o)
+ .debug_frame   0x0000000000002890       0xc4 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_arm_cmpdf2.o)
+ .debug_frame   0x0000000000002954       0x20 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_arm_unorddf2.o)
+ .debug_frame   0x0000000000002974       0x24 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_arm_fixdfsi.o)
+ .debug_frame   0x0000000000002998       0x24 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_arm_truncdfsf2.o)
+ .debug_frame   0x00000000000029bc       0x2c /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x00000000000029e8       0x34 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/armv7e-m/fpu/libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x0000000000002a1c       0x20 /opt/Atollic_TrueSTUDIO_for_STM32_x86_64_9.3.0/ARMTools/bin/../lib/gcc/arm-atollic-eabi/6.3.1/../../../../arm-atollic-eabi/lib/armv7e-m/fpu/libnosys.a(sbrk.o)
 
 Cross Reference Table
 
@@ -3812,6 +3814,7 @@ SDIO_StartSDIOReadWait                            Libraries/STM32F4xx_StdPeriph_
 SDIO_StopSDIOReadWait                             Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_sdio.o
 SDIO_StructInit                                   Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_sdio.o
 SDIO_WriteData                                    Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_sdio.o
+SET_TIM1                                          src/mi_libreria.o
 SET_TIM4                                          src/mi_libreria.o
                                                   src/main.o
 SPI1_IRQHandler                                   src/startup_stm32f429x.o

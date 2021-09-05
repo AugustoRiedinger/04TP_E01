@@ -95,6 +95,7 @@ void 	INIT_SYSTICK(float);
 
 void INIT_TIM4(GPIO_TypeDef*, uint16_t);
 void SET_TIM4(uint16_t, uint32_t T, uint32_t, uint32_t);
+void SET_TIM1(uint16_t , uint32_t , uint32_t , uint32_t );
 
 
 #endif //mi_libreria_H
